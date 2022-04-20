@@ -1,18 +1,5 @@
+/*Gracias especiales al careverga de hanyerk por enseñarme */
 const request = require('request');
-
-/*
-request.post({
-  url: 'http://192.168.20.89:8081/sendSMS',
-  form: {
-    phone: '573002960022',
-    message: 'Your verification code is 1234'
-  }
-}, function (err, httpResponse, body) { 
-
-    console.log(body);
-
- })
- */
  
  async function sendMessages(phone = '', message = ''){
 	//console.log('phone: '+phone, 'message: '+ message);
@@ -31,20 +18,10 @@ var max =100;
 var min =1;
  
  // inicial la verga.
- // 3182386760 3002960022
  (async function(){
-	var list = [];
+	var list = [];   // formato [3003003030,3003013131,3003023232]
 	var message = 'Testing Sms';
-	//var message = 'Null';
-	/*var l = list.length;
-	var i = 0;
-	while(i < l){
-		var phone = list[i];
-		var r = await sendMessages(phone, message);
-		console.log('#'+(i+1)+'. r:', r);
-		//break;
-		i++;
-	}*/
+	
 	const progress = {
 		value: 0,
 		max: 100,
@@ -80,7 +57,6 @@ var min =1;
 		var allFN = [];
 		while(group.length){
 			var phone = group.shift();
-			//allFN.push(sendMessages(phone, message + ' '+ Math.floor(Math.random() * max) + min));
 			allFN.push(sendMessages(phone, message));
 			await new Promise(function(R){ setTimeout(R, 1e3 * 3); });
 		}
