@@ -14,12 +14,39 @@ Requiere Node Js
 https://nodejs.org/es/
 */
 
+/* 
+USO
+Para enviar SMS, el cliente HTTP debe proporcionar parámetros de teléfono y mensaje a la ruta /sendSMS a través del método POST
+*/
+
+/*
+Pasos:
+1- descargar el contenido completo del repositorio
+2- copiar el archivo apk en el cel y luego instalarlo
+3- conectar mediante wifi el dispositivo android y el computador en la misma red
+4- iniciar/dar permisos
+5- obtener ip dentro de apk y puerto a usar
+6- en la linea 35 del codigo , reemplazar la ip por la que tiene nuestro dispositivo agregando el puerto 
+7- Escribir en message el texto a enviar, no superior a 160 caracteres
+8- En list colocar la lista de numeros a quienes quieras enviar el mensaje, dentro de los corchetes
+9- Abrir la consola de comandos y ejecutarlo usando node
+10- Mira la magia
+
+*/
+
+
+/*
+ASUNTOS MENORES A TENER EN CUENTA
+Su router no debe bloquear la conexion de puertos entre equipos de manera entrante ni saliente
+Si el proceso se detiene en el celular no dejará de intentar enviar mensajes la herramienta
+Si necesita soporte en la instacion escriba a @Chaoticsystem telegram
+*/
 const request = require('request');
  
  async function sendMessages(phone = '', message = ''){
 	return new Promise(function(R){
 		request.post({
-		  url: 'http://192.168.177.96:8080/sendSMS',
+		  url: 'http://192.168.177.96:8080/sendSMS',  //cambiar por la mostrada en la aplicacion
 		  form: { phone, message }
 		}, function (err, httpResponse, body = null){ 
 			R({phone, body});
